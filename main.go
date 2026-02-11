@@ -79,8 +79,13 @@ func fetchArticle(url string) (*Article, error) {
 func extractTitle(url string) string {
 	var title string
 
+	url = strings.TrimSuffix(url, "/")
 	var splitUrl = strings.Split(url, "/")
 	title = splitUrl[len(strings.Split(url, "/"))-1]
+
+	if title == "" {
+		title = "UntitledArticle"
+	}
 
 	return title
 }
